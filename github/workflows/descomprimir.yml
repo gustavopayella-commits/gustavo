@@ -1,0 +1,25 @@
+
+name: Descomprimir ZIP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  extraer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Descomprimir archivo
+        run: |
+          unzip -o web.zip -d .
+
+      - name: Guardar archivos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Descomprimir ZIP"
+          git push
